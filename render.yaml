@@ -1,4 +1,11 @@
 services:
+  # ----------------- Database Service -----------------
+  - type: psql
+    name: sneh-ai-db # You can give it a friendly name
+    plan: free
+    # postgresql_version: 15 # Optional, but good practice
+
+  # ----------------- Web Service -----------------
   - type: web
     name: sneh-ai-backend
     env: python
@@ -7,16 +14,13 @@ services:
     startCommand: "uvicorn app.main:app --host 0.0.0.0 --port 10000"
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          # --- THIS IS THE CORRECTED NAME ---
-          name: mydatabase_e5qx 
-          # --- END OF CORRECTION ---
+        fromService:
+          type: psql
+          name: sneh-ai-db # This MUST match the database name above
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
       - key: ALGORITHM
         value: "HS256"
-      - key: ACCESS_TOKEN_EXPIRE_MINUTES
-        value: 60
-      - key: GEMINI_API_KEY
-        sync: false
+      # --- IMPORTANT: Manually add other keys in Render Dashboard ---
+      # BASE_URL, GEMINI_API_KEY, GCP_PROJECT_ID, etc.
