@@ -2,7 +2,7 @@ services:
   # ----------------- Database Service -----------------
   - type: pserv
     name: sneh-ai-db
-    env: postgres
+    runtime: postgres
     plan: free
 
   # ----------------- Web Service -----------------
@@ -14,10 +14,8 @@ services:
     startCommand: "uvicorn app.main:app --host 0.0.0.0 --port 10000"
     envVars:
       - key: DATABASE_URL
-        fromService:
-          type: pserv
+        fromDatabase:
           name: sneh-ai-db
-          property: connectionString
       - key: SECRET_KEY
         generateValue: true
       - key: ALGORITHM
