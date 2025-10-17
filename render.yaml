@@ -2,19 +2,21 @@ services:
   - type: web
     name: sneh-ai-backend
     env: python
-    plan: free # or starter
+    plan: free
     buildCommand: "./build.sh"
     startCommand: "uvicorn app.main:app --host 0.0.0.0 --port 10000"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: sneh-ai-db # MUST match your Render Database name
+          # --- THIS IS THE CORRECTED NAME ---
+          name: mydatabase_e5qx 
+          # --- END OF CORRECTION ---
           property: connectionString
       - key: SECRET_KEY
-        generateValue: true # Render will generate a random secret key
+        generateValue: true
       - key: ALGORITHM
         value: "HS256"
       - key: ACCESS_TOKEN_EXPIRE_MINUTES
         value: 60
       - key: GEMINI_API_KEY
-        sync: false # Set this manually in the Render dashboard
+        sync: false
