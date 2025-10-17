@@ -2,8 +2,8 @@ services:
   # ----------------- Database Service -----------------
   - type: pserv
     name: sneh-ai-db
+    env: postgres
     plan: free
-    database: postgres
 
   # ----------------- Web Service -----------------
   - type: web
