@@ -17,3 +17,4 @@ google-cloud-texttospeech
 google-cloud-speech
 paypalrestsdk
 pydantic[email]
+Pillow
