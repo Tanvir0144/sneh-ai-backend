@@ -1,0 +1,45 @@
+# --- Virtual Environment ---
+# Ignore the virtual environment folder
+venv/
+.venv/
+env/
+.env/
+
+# --- Python Cache ---
+# Ignore Python cache files and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- IDE and Editor Folders ---
+# Ignore editor-specific settings folders
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# --- Secrets and Credentials ---
+# CRITICAL: Ignore the .env file containing all secrets!
+.env
+
+# CRITICAL: Ignore the Google Cloud Service Account JSON key file!
+*.json
+
+# --- Generated Media Files ---
+# Ignore user-uploaded or AI-generated files
+# We keep the folders but ignore their contents
+static/*
+!static/.gitkeep
+static/audio/*
+!static/audio/.gitkeep
+
+# --- Logs ---
+# Ignore log files
+*.log
+logs/
+
+# --- Other ---
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
