@@ -1,8 +1,9 @@
 services:
   # ----------------- Database Service -----------------
-  - type: postgres # --- THIS IS THE CORRECTED LINE ---
+  - type: pserv
     name: sneh-ai-db
     plan: free
+    database: postgres
 
   # ----------------- Web Service -----------------
   - type: web
@@ -14,7 +15,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromService:
-          type: postgres # --- THIS LINE MUST ALSO MATCH ---
+          type: pserv
           name: sneh-ai-db
           property: connectionString
       - key: SECRET_KEY
