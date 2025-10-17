@@ -1,16 +1,16 @@
 services:
   # ----------------- Database Service -----------------
   - type: pserv
-    name: sneh-ai-db
     runtime: postgres
+    name: sneh-ai-db
     plan: free
 
   # ----------------- Web Service -----------------
   - type: web
+    runtime: python
     name: sneh-ai-backend
-    env: python
     plan: free
-    buildCommand: "./build.sh"
+    buildCommand: "pip install -r requirements.txt"
     startCommand: "uvicorn app.main:app --host 0.0.0.0 --port 10000"
     envVars:
       - key: DATABASE_URL
