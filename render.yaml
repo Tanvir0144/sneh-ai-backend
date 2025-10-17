@@ -1,9 +1,8 @@
 services:
   # ----------------- Database Service -----------------
-  - type: psql
-    name: sneh-ai-db # You can give it a friendly name
+  - type: postgres # --- THIS IS THE CORRECTED LINE ---
+    name: sneh-ai-db
     plan: free
-    # postgresql_version: 15 # Optional, but good practice
 
   # ----------------- Web Service -----------------
   - type: web
@@ -15,12 +14,10 @@ services:
     envVars:
       - key: DATABASE_URL
         fromService:
-          type: psql
-          name: sneh-ai-db # This MUST match the database name above
+          type: postgres # --- THIS LINE MUST ALSO MATCH ---
+          name: sneh-ai-db
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
       - key: ALGORITHM
         value: "HS256"
-      # --- IMPORTANT: Manually add other keys in Render Dashboard ---
-      # BASE_URL, GEMINI_API_KEY, GCP_PROJECT_ID, etc.
